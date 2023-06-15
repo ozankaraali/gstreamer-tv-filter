@@ -11,20 +11,22 @@
 
 use gst::glib;
 
-mod identity;
-mod progressbin;
-mod rgb2gray;
-mod sinesrc;
-mod tvfilter;
+// mod identity;
+// mod progressbin;
+// mod rgb2gray;
+// mod sinesrc;
+// mod tvfilter;
+mod gstaging;
 
 // Plugin entry point that should register all elements provided by this plugin,
 // and everything else that this plugin might provide (e.g. typefinders or device providers).
 fn plugin_init(plugin: &gst::Plugin) -> Result<(), glib::BoolError> {
-    rgb2gray::register(plugin)?;
-    sinesrc::register(plugin)?;
-    identity::register(plugin)?;
-    progressbin::register(plugin)?;
-    tvfilter::register(plugin)?;
+    // rgb2gray::register(plugin)?;
+    // sinesrc::register(plugin)?;
+    // identity::register(plugin)?;
+    // progressbin::register(plugin)?;
+    // tvfilter::register(plugin)?;
+    gstaging::register(plugin)?;
     Ok(())
 }
 

@@ -1,0 +1,16 @@
+export GST_PLUGIN_PATH=$GST_PLUGIN_PATH:/Users/ozankaraali/vhs-gst/target/debug 
+
+export PATH="/Library/Frameworks/GStreamer.framework/Versions/1.0/bin${PATH:+:$PATH}"
+
+
+/Library/Frameworks/GStreamer.framework/Versions/1.0/bin/gst-launch-1.0 filesrc location=sintel.mp4 ! decodebin name=d \
+d. ! queue ! videoconvert ! agingtv dusts=false ! autovideosink \
+d. ! queue ! audioconvert ! adder name=mixer \
+audiotestsrc wave=white-noise volume=0.01 ! audioconvert ! mixer. \
+mixer. ! audioconvert ! audiocheblimit mode=low-pass cutoff=2000 ! autoaudiosink
+
+/Library/Frameworks/GStreamer.framework/Versions/1.0/bin/gst-launch-1.0 filesrc location=sintel.mp4 ! decodebin name=d \
+d. ! queue ! videoconvert ! gstagingtv ! autovideosink \
+d. ! queue ! audioconvert ! adder name=mixer \
+audiotestsrc wave=white-noise volume=0.01 ! audioconvert ! mixer. \
+mixer. ! audioconvert ! audiocheblimit mode=low-pass cutoff=2000 ! autoaudiosink
